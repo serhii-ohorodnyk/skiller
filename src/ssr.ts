@@ -1,7 +1,7 @@
 import { createServer, IncomingMessage, ServerResponse } from "http"
 
 const handler = async (req: IncomingMessage, res: ServerResponse) => {
-  res.writeHead(200, { "Content-Type": "text/html" });
+  res.writeHead(200, { "Content-Type": "text/html" })
   res.end(`
     <html lang="en">
     <head>
@@ -19,9 +19,7 @@ const handler = async (req: IncomingMessage, res: ServerResponse) => {
 }
 
 if (!process.env.IS_NOW) {
-  createServer(handler).listen(3000);
-  // tslint:disable-next-line:no-console
-  console.log("App is running: http://localhost:3000")
+  createServer(handler).listen(3000)
 }
 
 export default handler
