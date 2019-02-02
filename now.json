@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "./src/**/*.ts",
+      "use": "@now/node@canary"
+    },
+    {
+      "src": "./dist/**/*",
+      "use": "@now/static"
+    }
+  ],
+  "env": {
+    "IS_NOW": "true"
+  },
+  "routes": [
+    { "src": "/favicon.ico", "dest": "/dist/favicon.ico" },
+    { "src": "/(.*)", "dest": "/src/ssr.ts" }
+  ]
+}

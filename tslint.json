@@ -1,0 +1,18 @@
+{
+  "extends": ["tslint:latest", "tslint-react"],
+  "linterOptions": {
+    "exclude": [
+      "*.json",
+      "**/*.json"
+    ]
+  },
+  "rules": {
+    "semicolon": false,
+    "deprecation": {
+      "options": [
+        true
+      ],
+      "severity": "warn"
+    }
+  }
+}
