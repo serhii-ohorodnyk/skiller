@@ -1,0 +1,9 @@
+anguage : node_js
+node_js :
+  - stable
+install:
+  - yarn
+script:
+  - yarn build
+deploy:
+  - yarn deploy

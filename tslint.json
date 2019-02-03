@@ -1,18 +1,18 @@
 {
   "extends": ["tslint:latest", "tslint-react"],
   "linterOptions": {
-    "exclude": [
-      "*.json",
-      "**/*.json"
-    ]
+    "exclude": ["*.json", "**/*.json"]
   },
   "rules": {
-    "semicolon": false,
+    "semicolon": [true, "never"],
     "deprecation": {
-      "options": [
-        true
-      ],
+      "options": [true],
       "severity": "warn"
-    }
+    },
+    "interface-name": [true, "never-prefix"],
+    "arrow-parens": false,
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false,
+    "jsx-no-multiline-js": false
   }
 }
