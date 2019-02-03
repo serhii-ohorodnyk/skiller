@@ -6,4 +6,6 @@ install:
 script:
   - yarn build
 deploy:
-  - yarn deploy
+  provider: script
+  script: yarn deploy
+  skip_cleanup: true
