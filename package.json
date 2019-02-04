@@ -10,7 +10,7 @@
     "build:browser": "cross-env webpack --config webpack/browser.ts",
     "build:ssr": "cross-env webpack --config webpack/ssr.ts",
     "build": "yarn clean && yarn build:browser && yarn build:ssr",
-    "deploy": "now --no-clipboard --token=$NOW_TOKEN"
+    "deploy": "now --no-clipboard --team=$NOW_TEAM --token=$NOW_TOKEN"
   },
   "dependencies": {
     "@loadable/component": "^5.5.0",
