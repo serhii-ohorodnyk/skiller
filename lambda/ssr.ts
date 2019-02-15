@@ -1,4 +1,5 @@
 import { readFileSync } from "fs";
+import { createServer } from "http";
 import requireFromString from "require-from-string";
 
 // Ideally should relay on consts from <root>/webpack/const.ts.
@@ -16,4 +17,14 @@ const handler = requireFromString(
   })
 );
 
-export default handler.default(JSON.parse(stringStats));
+const lambda = handler.default(JSON.parse(stringStats));
+
+if (!process.env.IS_NOW) {
+  // stop server on cmd+c
+  process.on("SIGINT", () => {
+    process.exit();
+  });
+  createServer(lambda).listen(3001);
+}
+
+export default lambda;

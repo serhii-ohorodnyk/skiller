@@ -2,13 +2,17 @@ import LoadablePlugin from "@loadable/webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import ExtractCssChunks from "extract-css-chunks-webpack-plugin";
 import path from "path";
-import SWPrecacheWebpackPlugin from "sw-precache-webpack-plugin";
 import webpack from "webpack";
 import mergeWebpack from "webpack-merge";
-import WebpackPwaManifest from "webpack-pwa-manifest";
+import WorkboxPlugin from "workbox-webpack-plugin";
 
 import common from "./common";
-import { BUILD_PATH, LOADABLE_STATS_FILENAME, ROOT_PATH } from "./const";
+import {
+  BUILD_PATH,
+  LOADABLE_STATS_FILENAME,
+  ROOT_PATH,
+  SW_FILENAME
+} from "./const";
 
 const isProduction =
   !!process.env.NODE_ENV && process.env.NODE_ENV !== "development";
@@ -126,38 +130,14 @@ const browserConfig: webpack.Configuration = {
         to: ""
       }
     ]),
-    ...(!isProduction
-      ? []
-      : [
-          new SWPrecacheWebpackPlugin({
-            cacheId: "skiller",
-            dontCacheBustUrlsMatching: /\.\w{8}\./,
-            filename: "sw.js",
-            logger(message) {
-              if (message.indexOf("Total precache size is") === 0) {
-                return;
-              }
-              if (message.indexOf("Skipping static resource") === 0) {
-                return;
-              }
-              // tslint:disable-next-line:no-console
-              console.log(message);
-            },
-            navigateFallback: "/",
-            navigateFallbackWhitelist: [/^(?!\/__).*/],
-            staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
-          }),
-          new WebpackPwaManifest({
-            background_color: "#FAFAFA",
-            display: "standalone",
-            filename: "manifest.json",
-            name: "skeleton",
-            orientation: "any",
-            short_name: "skeleton",
-            start_url: "/",
-            theme_color: "#2F79B9"
+    ...(isProduction
+      ? [
+          new WorkboxPlugin.InjectManifest({
+            exclude: [LOADABLE_STATS_FILENAME],
+            swSrc: `dist/${SW_FILENAME}`
           })
-        ])
+        ]
+      : [])
   ]
 };
 

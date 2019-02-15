@@ -1,16 +1,19 @@
 import React from "react";
 import Helmet from "react-helmet";
 
-import appIcon from "./appIcon.jpg";
+import { AppThemeProvider, GlobalStyles } from "./styles";
+import Layout from "./views/Layout";
 
 const App: React.FC = () => (
-  <div>
-    <Helmet>
-      <title>Skiller</title>
-    </Helmet>
-    <h1>Skiller</h1>
-    <img src={appIcon} />
-  </div>
+  <AppThemeProvider>
+    <>
+      <GlobalStyles />
+      <Helmet>
+        <title>Skiller</title>
+      </Helmet>
+      <Layout />
+    </>
+  </AppThemeProvider>
 );
 
 export default App;

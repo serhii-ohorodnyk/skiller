@@ -4,7 +4,7 @@ import mergeWebpack from "webpack-merge";
 // import nodeModules from "webpack-node-externals"
 
 import common from "./common";
-import { BUILD_PATH, ROOT_PATH, SSR_FILE_NAME } from "./const";
+import { BUILD_PATH, ROOT_PATH, SSR_FILENAME } from "./const";
 
 const isProduction =
   !!process.env.NODE_ENV && process.env.NODE_ENV !== "development";
@@ -20,7 +20,7 @@ const ssrConfig: webpack.Configuration = {
   },
   output: {
     chunkFilename: "[name].js",
-    filename: SSR_FILE_NAME,
+    filename: SSR_FILENAME,
     libraryTarget: "commonjs2",
     path: BUILD_PATH,
     publicPath: "/"

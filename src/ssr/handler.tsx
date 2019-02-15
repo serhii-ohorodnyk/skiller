@@ -55,12 +55,8 @@ const handler = (stats: Stats) => async (
     );
 
     res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(html);
+    res.end(`<!DOCTYPE html>${html}`);
   }
 };
-
-// if (!process.env.IS_NOW) {
-//   createServer(handler).listen(3000)
-// }
 
 export default handler;

@@ -1,0 +1,21 @@
+{
+  "name": "Skiller",
+  "short_name": "Skiller",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/media/app-icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/media/app-icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#008281",
+  "background_color": "#008281",
+  "display": "standalone",
+  "start_url": "/"
+}

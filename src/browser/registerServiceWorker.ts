@@ -1,3 +1,5 @@
+import { SW_FILENAME } from "../../webpack/const";
+
 // tslint:disable:no-console
 // In production, we register a service worker to serve assets from local cache.
 
@@ -20,9 +22,9 @@ const isLocalhost = Boolean(
 );
 
 export function registerServiceWorker() {
-  if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
+  if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      const swUrl = `/sw.js`;
+      const swUrl = `/${SW_FILENAME}`;
 
       if (!isLocalhost) {
         // Is not local host. Just register service worker
