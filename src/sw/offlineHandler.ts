@@ -1,9 +1,9 @@
 export const registerOfflineHandler = (offlineUrl: string) => {
-  const networkFirst = workbox.strategies.networkFirst();
+  const networkOnly = workbox.strategies.networkOnly();
 
   const offlineHandler = async args => {
     try {
-      const response = await networkFirst.handle(args);
+      const response = await networkOnly.handle(args);
       return response || caches.match(offlineUrl);
     } catch (error) {
       return caches.match(offlineUrl);

@@ -32,25 +32,26 @@ const handler = (stats: Stats) => async (
   );
 
   const appHtml = renderToString(applicationTree);
+  // collect script elements
+  const JsScripts = extractor.getScriptElements();
+  // collect style elements
+  const StyleLinks = extractor.getStyleElements();
+  const staticHelmet = Helmet.renderStatic();
+  const StyleElements = sheet.getStyleElement();
 
   // Handle redirects
   if (routerContext.url) {
     res.writeHead(302, { Location: routerContext.url });
     res.end();
   } else {
-    // collect script elements
-    const JsScripts = extractor.getScriptElements();
-    // collect style elements
-    const StyleLinks = extractor.getStyleElements();
-
     const html = renderToStaticMarkup(
       <Html
         // if you don't need SSR - remove 'appHtml'
         appHtml={appHtml}
         StyleLinks={StyleLinks}
-        helmet={Helmet.renderStatic()}
+        helmet={staticHelmet}
         JsScripts={JsScripts}
-        StyleElements={sheet.getStyleElement()}
+        StyleElements={StyleElements}
       />
     );
 

@@ -8,9 +8,7 @@ const App: React.FC = () => (
   <AppThemeProvider>
     <>
       <GlobalStyles />
-      <Helmet>
-        <title>Skiller</title>
-      </Helmet>
+      <Helmet title="Skiller" />
       <Layout />
     </>
   </AppThemeProvider>

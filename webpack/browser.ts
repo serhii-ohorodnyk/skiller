@@ -1,10 +1,12 @@
+// branched version from workbox, see https://github.com/GoogleChrome/workbox/pull/1765
+import WorkboxPlugin from "@httptoolkit/workbox-webpack-plugin";
 import LoadablePlugin from "@loadable/webpack-plugin";
+import CleanWebpackPlugin from "clean-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import ExtractCssChunks from "extract-css-chunks-webpack-plugin";
 import path from "path";
 import webpack from "webpack";
 import mergeWebpack from "webpack-merge";
-import WorkboxPlugin from "workbox-webpack-plugin";
 
 import common from "./common";
 import {
@@ -13,17 +15,27 @@ import {
   ROOT_PATH,
   SW_FILENAME
 } from "./const";
+import devServer from "./devServer";
+
+// tslint:disable:no-console
 
 const isProduction =
   !!process.env.NODE_ENV && process.env.NODE_ENV !== "development";
 
 const browserConfig: webpack.Configuration = {
+  devServer,
   devtool: isProduction ? false : "inline-source-map",
-  entry: [path.join(ROOT_PATH, "./src/browser")],
+  entry: {
+    main: path.join(ROOT_PATH, "./src/browser"),
+    sw: path.join(ROOT_PATH, "./src/sw")
+  },
   name: "browser",
   output: {
     chunkFilename: "js/[name].[hash:8].chunk.js",
-    filename: "js/[name].[hash:8].js",
+    filename: (chunkData =>
+      chunkData.chunk.name === "sw"
+        ? "[name].js"
+        : "js/[name].[hash:8].js") as any,
     path: BUILD_PATH,
     publicPath: "/"
   },
@@ -112,8 +124,10 @@ const browserConfig: webpack.Configuration = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(BUILD_PATH, { allowExternal: true }),
     new LoadablePlugin({
-      filename: LOADABLE_STATS_FILENAME
+      filename: LOADABLE_STATS_FILENAME,
+      writeToDisk: true // used by devServer
     }),
     new ExtractCssChunks({
       filename: "css/[name].[chunkhash:8].css",
@@ -130,14 +144,10 @@ const browserConfig: webpack.Configuration = {
         to: ""
       }
     ]),
-    ...(isProduction
-      ? [
-          new WorkboxPlugin.InjectManifest({
-            exclude: [LOADABLE_STATS_FILENAME],
-            swSrc: `dist/${SW_FILENAME}`
-          })
-        ]
-      : [])
+    new WorkboxPlugin.InjectManifest({
+      exclude: [LOADABLE_STATS_FILENAME],
+      swDest: SW_FILENAME
+    })
   ]
 };
 
