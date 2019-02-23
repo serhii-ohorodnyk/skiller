@@ -1,0 +1,13 @@
+language : node_js
+node_js :
+  - stable
+install:
+  - yarn
+script:
+  - yarn build
+deploy:
+  provider: script
+  script: yarn deploy
+  skip_cleanup: true
+  on:
+    branch: master

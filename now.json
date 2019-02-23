@@ -1,20 +1,27 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "./src/**/*.ts",
-      "use": "@now/node@canary"
-    },
-    {
-      "src": "./dist/**/*",
-      "use": "@now/static"
-    }
+    { "src": "/dist/**/*", "use": "@now/static" },
+    { "src": "/lambda/**/*.ts", "use": "@now/node@canary" }
   ],
   "env": {
     "IS_NOW": "true"
   },
   "routes": [
-    { "src": "/favicon.ico", "dest": "/dist/favicon.ico" },
-    { "src": "/(.*)", "dest": "/src/ssr.ts" }
+    { "src": "^/js/(.*)", "dest": "/dist/js/$1" },
+    { "src": "^/css/(.*)", "dest": "/dist/css/$1" },
+    { "src": "^/media/(.*)", "dest": "/dist/media/$1" },
+    { "src": "^/manifest.json", "dest": "/dist/manifest.json" },
+    { "src": "^/browserconfig.xml", "dest": "/dist/browserconfig.xml" },
+    {
+      "src": "^/precache-manifest.(.*).js",
+      "dest": "/dist/precache-manifest.$1.js"
+    },
+    {
+      "src": "^/sw.js",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/dist/sw.js"
+    },
+    { "src": "/(.*)", "dest": "/lambda/ssr.ts" }
   ]
 }
