@@ -5,7 +5,9 @@ import CleanWebpackPlugin from "clean-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import ExtractCssChunks from "extract-css-chunks-webpack-plugin";
 import path from "path";
+import TerserPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
+// import Analyzer from 'webpack-bundle-analyzer'
 import mergeWebpack from "webpack-merge";
 
 import common from "./common";
@@ -111,6 +113,7 @@ const browserConfig: webpack.Configuration = {
   // The browser bundle will be responsible for building the resulting
   // CSS file ensure compilation is dumped into a single chunk
   optimization: {
+    minimizer: [new TerserPlugin({ parallel: true })],
     splitChunks: {
       cacheGroups: {
         styles: {
@@ -148,6 +151,7 @@ const browserConfig: webpack.Configuration = {
       exclude: [LOADABLE_STATS_FILENAME],
       swDest: SW_FILENAME
     })
+    // new Analyzer.BundleAnalyzerPlugin()
   ]
 };
 
