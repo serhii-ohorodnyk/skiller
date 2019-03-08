@@ -11,6 +11,7 @@ import { Stats } from "webpack";
 
 // import { LOADABLE_STATS_PATH } from "../../webpack/const"
 import App from "app/App";
+import { AppThemeProvider } from "app/styles";
 import Html from "./Html";
 
 const handler = (stats: Stats) => async (
@@ -26,7 +27,9 @@ const handler = (stats: Stats) => async (
   const applicationTree = extractor.collectChunks(
     <StyleSheetManager sheet={sheet.instance}>
       <StaticRouter location={req.url} context={routerContext}>
-        <App />
+        <AppThemeProvider userAgent={req.headers["user-agent"]}>
+          <App />
+        </AppThemeProvider>
       </StaticRouter>
     </StyleSheetManager>
   );

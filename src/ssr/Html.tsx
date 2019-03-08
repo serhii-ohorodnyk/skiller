@@ -76,17 +76,17 @@ const Html: React.FC<HtmlProps> = ({
       {helmet.meta.toComponent()}
       {helmet.style.toComponent()}
       {helmet.link.toComponent()}
-      {...StyleLinks}
+      {StyleLinks}
       {StyleElements}
       {helmet.script.toComponent()}
       {helmet.noscript.toComponent()}
-      {...LinkElements}
+      {LinkElements}
     </head>
     <body {...helmet.bodyAttributes.toComponent()}>
       <div id="root" dangerouslySetInnerHTML={{ __html: appHtml || "" }} />
       <script dangerouslySetInnerHTML={{ __html: stringifyWindow(window) }} />
     </body>
-    {...JsScripts}
+    {JsScripts}
   </html>
 );
 
