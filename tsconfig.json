@@ -1,23 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "build",
-    "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2017",
-    "lib": [
-      "es6",
-      "dom",
-      "scripthost",
-      "es2016.array.include"
-    ],
+    "target": "esnext",
+    "lib": ["es6", "dom", "scripthost", "es2016.array.include"],
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "app/*": [
-        "src/app/*"
-      ],
+      "app/*": ["src/app/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
@@ -31,8 +23,5 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "exclude": [
-    "dist"
-  ]
+  "exclude": ["dist"]
 }
- 

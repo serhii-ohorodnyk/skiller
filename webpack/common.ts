@@ -34,19 +34,16 @@ export default (isProduction: boolean): webpack.Configuration => ({
                     ssr: true
                   }
                 ]
+              ],
+              presets: [
+                "@babel/react",
+                [
+                  "@babel/preset-typescript",
+                  {
+                    isTSX: false
+                  }
+                ]
               ]
-            }
-          },
-          {
-            loader: "ts-loader",
-            options: {
-              compilerOptions: {
-                module: "esnext"
-              },
-
-              // Avoid typechecking, to speed up bundling.
-              // While type check is done in separate process, thanks to ForkTsCheckerWebpackPlugin plugin.
-              transpileOnly: true
             }
           }
         ]
