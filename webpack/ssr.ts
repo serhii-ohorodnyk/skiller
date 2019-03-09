@@ -4,14 +4,14 @@ import mergeWebpack from "webpack-merge";
 // import nodeModules from "webpack-node-externals"
 
 import common from "./common";
-import { BUILD_PATH, ROOT_PATH, SSR_FILENAME } from "./const";
+import { BUILD_PATH, SSR_FILENAME, SSR_SRC_PATH } from "./const";
 
 const isProduction =
   !!process.env.NODE_ENV && process.env.NODE_ENV !== "development";
 
 const ssrConfig: webpack.Configuration = {
   devtool: isProduction ? false : "eval-source-map",
-  entry: [path.join(ROOT_PATH, "./src/ssr")],
+  entry: [SSR_SRC_PATH],
   // External modules that we avoid transpiling
   // externals: nodeModules(),
   name: "ssr",

@@ -1,20 +1,18 @@
-// branched version from workbox, see https://github.com/GoogleChrome/workbox/pull/1765
-import WorkboxPlugin from "@httptoolkit/workbox-webpack-plugin";
 import LoadablePlugin from "@loadable/webpack-plugin";
 import CleanWebpackPlugin from "clean-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import ExtractCssChunks from "extract-css-chunks-webpack-plugin";
-import path from "path";
+import ServiceWorkerWebpackPlugin from "serviceworker-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
 import mergeWebpack from "webpack-merge";
 
 import common from "./common";
 import {
+  BROWSER_SRC_PATH,
   BUILD_PATH,
   LOADABLE_STATS_FILENAME,
-  ROOT_PATH,
-  SW_FILENAME
+  SW_SRC_PATH
 } from "./const";
 import devServer from "./devServer";
 
@@ -26,17 +24,11 @@ const isProduction =
 const browserConfig: webpack.Configuration = {
   devServer,
   devtool: isProduction ? false : "inline-source-map",
-  entry: {
-    main: path.join(ROOT_PATH, "./src/browser"),
-    sw: path.join(ROOT_PATH, "./src/sw")
-  },
+  entry: [BROWSER_SRC_PATH],
   name: "browser",
   output: {
     chunkFilename: "js/[name].[hash:8].chunk.js",
-    filename: (chunkData =>
-      chunkData.chunk.name === "sw"
-        ? "[name].js"
-        : "js/[name].[hash:8].js") as any,
+    filename: "js/[name].[hash:8].js",
     path: BUILD_PATH,
     publicPath: "/"
   },
@@ -146,9 +138,9 @@ const browserConfig: webpack.Configuration = {
         to: ""
       }
     ]),
-    new WorkboxPlugin.InjectManifest({
-      exclude: [LOADABLE_STATS_FILENAME],
-      swDest: SW_FILENAME
+    new ServiceWorkerWebpackPlugin({
+      entry: SW_SRC_PATH,
+      excludes: [LOADABLE_STATS_FILENAME]
     })
     // new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)()
   ]

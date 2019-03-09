@@ -28,8 +28,10 @@ const ssrHandler: RequestHandler = async (req, res) => {
 const devServer: Configuration["devServer"] = {
   // all not matched requests handle like server side render
   after: app => app.use(ssrHandler),
+  // this before hook is needed to intercept index request before devServer shows its "listing directory" page
+  before: app => app.get("/", ssrHandler),
   compress: true,
-  historyApiFallback: true,
+  historyApiFallback: false,
   hot: true,
   open: true,
   port: 3000

@@ -5,9 +5,11 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "app/App";
 import { AppThemeProvider } from "app/styles";
-import { registerServiceWorker } from "./registerServiceWorker";
+import registerServiceWorker from "./registerServiceWorker";
 
 const render = () => {
+  registerServiceWorker();
+
   loadableReady(() => {
     ReactDOM.hydrate(
       <BrowserRouter>
@@ -17,8 +19,6 @@ const render = () => {
       </BrowserRouter>,
       document.getElementById("root")
     );
-
-    registerServiceWorker();
   });
 };
 
