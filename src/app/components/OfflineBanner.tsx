@@ -19,7 +19,7 @@ const OfflineBanner: React.FC = () => {
         direction="row"
         justify="center"
         align="center"
-        background="status-warning"
+        background="accent-4"
         pad="medium"
         fill={true}
         basis="full"

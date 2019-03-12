@@ -10,9 +10,10 @@ const GlobalStyles = createGlobalStyle`
   };
 
   body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     overflow-y: scroll;
     overscroll-behavior-y: none;
-    background-color: ${({ theme }) => theme.global.colors["light-1"]};
+    background-color: ${({ theme }) => theme.global.colors["light-2"]};
     margin: 0;
   };
 `;

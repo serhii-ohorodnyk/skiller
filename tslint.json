@@ -1,5 +1,10 @@
 {
-  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-react-hooks",
+    "tslint-config-prettier"
+  ],
   "linterOptions": {
     "exclude": ["*.json", "**/*.json"]
   },
@@ -12,6 +17,7 @@
     "interface-name": [true, "never-prefix"],
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
-    "jsx-no-multiline-js": false
+    "jsx-no-multiline-js": false,
+    "react-hooks-nesting": "error"
   }
 }

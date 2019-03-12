@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "build",
+    "module": "commonjs",
     "moduleResolution": "node",
     "target": "esnext",
     "lib": ["es6", "dom", "scripthost", "es2016.array.include", "webworker"],
