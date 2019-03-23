@@ -15,6 +15,9 @@ const theme: RecursivePartial<AppTheme> = {
     colors: {
       brand: manifest.theme_color
     }
+  },
+  radar: {
+    scaleColors: ["#00873D", "#3D138D", "#00739D", "#A2423D"]
   }
 };
 
