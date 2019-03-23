@@ -7,11 +7,12 @@ declare global {
 
   declare const __IS_SSR__: boolean;
   declare const workbox: any;
-  interface Window {
-    __precacheManifest: (string | { revision: string; url: string })[];
-  }
 
   type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
   type RecursivePartial<T> = { [P in keyof T]?: RecursivePartial<T[P]> };
+
+  interface ObjectConstructor {
+    keys<T>(o: T): (keyof T)[];
+  }
 }

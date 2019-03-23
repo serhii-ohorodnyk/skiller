@@ -118,7 +118,9 @@ const browserConfig: webpack.Configuration = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(BUILD_PATH, { allowExternal: true }),
+    new CleanWebpackPlugin({
+      dangerouslyAllowCleanPatternsOutsideProject: true
+    }),
     new LoadablePlugin({
       filename: LOADABLE_STATS_FILENAME,
       writeToDisk: true // used by devServer

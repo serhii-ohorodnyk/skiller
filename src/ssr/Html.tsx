@@ -9,7 +9,7 @@ export interface HtmlProps {
   LinkElements?: React.ReactNode[];
   helmet: HelmetData;
   StyleElements?: Array<React.ReactElement<{}>>;
-  window?: any;
+  window?: Partial<Window>;
 }
 
 const stringifyWindow = (input: Partial<Window>) =>

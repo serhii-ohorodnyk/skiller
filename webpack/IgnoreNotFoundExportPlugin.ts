@@ -1,5 +1,4 @@
 import { compilation, Compiler } from "webpack";
-import ModuleDependencyWarning from "webpack/lib/ModuleDependencyWarning";
 
 /**
  * This plugin removes all warnings about missing exports.
@@ -11,10 +10,7 @@ class IgnoreNotFoundExportPlugin {
     const messageRegExp = /export '.*'( \(reexported as '.*'\))? was not found in/;
     function emitHook(comp: compilation.Compilation) {
       comp.warnings = comp.warnings.filter(warn => {
-        if (
-          warn instanceof ModuleDependencyWarning &&
-          messageRegExp.test(warn.message)
-        ) {
+        if (messageRegExp.test(warn.message)) {
           return false;
         }
         return true;
