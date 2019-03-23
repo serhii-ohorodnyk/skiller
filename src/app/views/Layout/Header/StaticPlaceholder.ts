@@ -1,4 +1,5 @@
-import { styled } from "app/styles";
+import styled from "styled-components";
+
 import { headerHeightPx } from "./const";
 
 const StaticPlaceholder = styled.div`

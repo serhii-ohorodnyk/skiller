@@ -1,6 +1,5 @@
 import { NavLink as ReactNavLink } from "react-router-dom";
-
-import { styled } from "app/styles";
+import styled from "styled-components";
 
 const NavLink = styled(ReactNavLink)`
   text-decoration: none;

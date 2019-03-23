@@ -1,12 +1,16 @@
 import { Grommet, GrommetProps, GrommetTheme } from "grommet";
 import React from "react";
+import styled from "styled-components";
 
 import manifest from "app/public/manifest.json";
-import { styled } from "./styled";
 
-export type Theme = GrommetTheme;
+export interface AppTheme extends GrommetTheme {
+  radar: {
+    scaleColors: string[];
+  };
+}
 
-const theme: RecursivePartial<Theme> = {
+const theme: RecursivePartial<AppTheme> = {
   global: {
     colors: {
       brand: manifest.theme_color
@@ -20,10 +24,10 @@ const StyledGrommet = styled(Grommet)`
   flex-direction: column;
 `;
 
-export type AppThemeProps = Omit<GrommetProps, "theme">;
+export type AppThemeProviderProps = Omit<GrommetProps, "theme">;
 
-const AppThemeProvider: React.FC<AppThemeProps> = props => (
-  <StyledGrommet {...props} theme={theme as Theme} />
+const AppThemeProvider: React.FC<AppThemeProviderProps> = props => (
+  <StyledGrommet {...props} theme={theme as AppTheme} />
 );
 
 export default AppThemeProvider;

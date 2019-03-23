@@ -1,4 +1,4 @@
-import { css } from "./styled";
+import { css } from "styled-components";
 
 export const horizontalScrollerStyle = () => css`
   margin-bottom: -30px;

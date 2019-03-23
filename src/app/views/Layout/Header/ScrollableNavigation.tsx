@@ -1,7 +1,8 @@
 import { Box, BoxProps } from "grommet";
 import React from "react";
+import styled from "styled-components";
 
-import { horizontalScrollerStyle, styled } from "app/styles";
+import { horizontalScrollerStyle } from "app/styles";
 import NavLink from "./NavLink";
 
 const NavBox: React.FC<Omit<BoxProps, "as">> = props => (

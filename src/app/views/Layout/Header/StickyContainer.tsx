@@ -1,7 +1,7 @@
 import { Box, BoxProps } from "grommet";
 import React from "react";
+import styled, { css } from "styled-components";
 
-import { css, styled } from "app/styles";
 import { headerHeightPx } from "./const";
 
 const hideGlobalHeaderStyle = (heightPx: number) => css`

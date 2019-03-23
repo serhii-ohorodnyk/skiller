@@ -1,5 +1,6 @@
+import styled from "styled-components";
+
 import AppIcon from "app/components/AppIcon";
-import { styled } from "app/styles";
 
 const Logo = styled(AppIcon)`
   padding: ${({ theme }) => theme.global.edgeSize.small};
