@@ -1,0 +1,14 @@
+_id: env_460fb670381f4510ad9958ff7cbb0298
+type: Environment
+parentId: env_07d25323a73cc908b39498666e5aa08fe038efa4
+modified: 1687761462837
+created: 1687761448522
+name: QA
+data:
+  baseUrl: http://something-else
+dataPropertyOrder:
+  "&":
+    - baseUrl
+color: null
+isPrivate: false
+metaSortKey: 1687761448522

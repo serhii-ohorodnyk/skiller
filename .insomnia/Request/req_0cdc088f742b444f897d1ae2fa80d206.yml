@@ -1,0 +1,25 @@
+_id: req_0cdc088f742b444f897d1ae2fa80d206
+type: Request
+parentId: wrk_a39f21804ed8484fb8540057627347ec
+modified: 1687761524790
+created: 1687688558468
+url: "{{ baseUrl }}/pet/findByStatus?status=soldQa"
+name: New Request
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_1acc3785606f46fcb1042b9e4325ac2c
+    name: accept
+    value: application/xml
+    description: ""
+authentication: {}
+metaSortKey: -1687688558468
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
